@@ -1,0 +1,6 @@
+#ifndef TRIANGLELIST_H
+#define TRIANGLELIST_H
+
+class Terrain;//forward declaration
+
+#endif

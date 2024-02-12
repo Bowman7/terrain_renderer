@@ -1,0 +1,58 @@
+#ifndef ARRAY2D_H
+#define ARRAY2D_H
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+
+template<typename Type>
+class Array2D{
+
+ public:
+  Array2D(){};
+  Array2D(int Cols,int Rows){
+    initArray2D(Cols,Rows);
+  }
+
+  void initArray2D(int Cols,int Rows){
+    m_col = Cols;
+    m_row = Rows;
+
+    if(m_p){
+      free(m_p);
+    }
+
+    m_p = (Type*)malloc(m_row*m_col*sizeof(Type));   
+  }
+  void initArray2D(int Cols,int Rows,void* pData){
+    m_col = Cols;
+    m_row = Rows;
+
+    if(m_p){
+      free(m_p);
+    }
+    m_p = (Type*)pData;
+  }
+
+  ~Array2D(){
+    free(m_p);
+    m_p = NULL;
+  }
+
+  void printFloat(){
+    for(int i=0;i<m_row;i++){
+      printf(" %d : ",i);
+      for(int j=0;j<m_col;j++){
+	float f=(float)m_p[j*m_col+i];
+	printf("%.6f",f);
+      }
+      printf("\n");
+    }
+  }
+ private:
+  Type* m_p =NULL;
+  int m_col =0;
+  int m_row =0;
+};
+
+#endif
